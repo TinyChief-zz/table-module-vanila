@@ -1,0 +1,56 @@
+{
+  "name": "testproject",
+  "version": "1.0.0",
+  "description": "Qualifying test task for training courses",
+  "main": "src/index.js",
+  "author": "Ptitsyn Anton",
+  "repository": {
+    "type": "git",
+    "url": "https://ptantemp@bitbucket.org/ptantemp/testproject.git"
+  },
+  "email": "ptitsyn.antony@yandex.ru",
+  "license": "BSD-3-Clause",
+  "engines": {
+    "node": ">=8.9.0 <=9.4.0",
+    "npm": "npm >=5.6.0"
+  },
+  "scripts": {
+    "start": "npm run clean:tmp && parcel src/index.html -p 3000 --out-dir .tmp",
+    "build": "npm run lint && npm run clean && npm run build:parcel",
+    "lint": "npm run lint:js && npm run lint:css",
+    "lint-fix": "npm run lint:js:fix && npm run lint:css:fix",
+    "lint:js:fix": "eslint ./src/**/*.js --fix",
+    "lint:css:fix": "stylelint ./src/**/*.css --fix",
+    "lint:css": "stylelint --ignore-path .gitignore ./src/**/*.css",
+    "lint:js": "eslint --ignore-path .gitignore -- ./src",
+    "clean": "npm run clean:build",
+    "clean:tmp": "rimraf ./.tmp",
+    "clean:build": "rimraf ./build",
+    "build:parcel": "parcel build src/index.html --out-dir build --no-cache"
+  },
+  "pre-commit": [
+    "lint-fix",
+    "lint"
+  ],
+  "devDependencies": {
+    "autoprefixer": "^7.2.5",
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^8.2.1",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "eslint": "^4.9.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-prettier": "^2.5.0",
+    "parcel-bundler": "^1.4.1",
+    "postcss-modules": "^1.1.0",
+    "pre-commit": "^1.2.2",
+    "prettier": "^1.10.2",
+    "prettier-stylelint": "^0.4.2",
+    "rimraf": "^2.6.2",
+    "stylelint": "^8.4.0"
+  },
+  "dependencies": {}
+}
